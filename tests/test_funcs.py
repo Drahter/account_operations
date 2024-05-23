@@ -1,5 +1,6 @@
-from src import funcs
+from src.funcs import *
 
 
 def test_get_data():
-    pass
+    assert type(get_data()) == list
+
