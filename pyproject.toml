@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "account"
+version = "0.1.0"
+description = ""
+authors = ["Dmit Bashmakov <denegniy1@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+pytest = "^8.2.1"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest-cov = "^5.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+pythonpath = [
+  "."
+]
