@@ -4,6 +4,7 @@ from datetime import date
 
 
 def get_data():
+    """Получение информации из файла в формате json из директории проекта"""
     with open(os.path.dirname(__file__) + '/../operations.json', 'r', encoding='utf8') as file:
         data_json = file.read()
         data = json.loads(data_json)
@@ -12,6 +13,10 @@ def get_data():
 
 
 def get_time(operations):
+    """
+    Из списка с данными получает словарь с айди в ключах и нужной частью даты операции,
+    а также отсекает не проведенные операции
+    """
     id_with_time = {}
     for each in operations:
         if "state" in each.keys():
@@ -23,6 +28,10 @@ def get_time(operations):
 
 
 def get_five_latest(operations):
+    """
+    Переводит даты в класс date, сортирует по ней список и возвращает последние 5 операций словарем с айди
+    и датой форматом в соответствии с ТЗ
+    """
     id_with_date = {}
     id_with_correct_date = []
     for k, v in operations.items():
@@ -39,6 +48,7 @@ def get_five_latest(operations):
 
 
 def get_payers_hidden(action_id, operations):
+    """Получает id операции и возвращает данные о отправителе и получателе в соответствии с ТЗ"""
     for each in operations:
         if each['id'] == action_id:
             from_to = ''
@@ -78,6 +88,7 @@ def get_payers_hidden(action_id, operations):
 
 
 def check_operations(five_latest, operations):
+    """Выводит информацию о поледних пяти операциях в нужном формате"""
     while len(five_latest) != 0:
         for operation in operations:
             if 'id' in operation.keys():
