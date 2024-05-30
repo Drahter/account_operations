@@ -75,3 +75,16 @@ def get_payers_hidden(action_id, operations):
                         from_to += check_number
 
             return from_to
+
+
+def check_operations(five_latest, operations):
+    while len(five_latest) != 0:
+        for operation in operations:
+            if 'id' in operation.keys():
+                if operation['id'] == five_latest[0]['id']:
+                    from_to = get_payers_hidden(operation['id'], operations)
+                    print(f"{five_latest[0]['date']} {operation['description']}\n{from_to}\n"
+                          f"{operation["operationAmount"]["amount"]} "
+                          f"{operation["operationAmount"]["currency"]["name"]}\n")
+
+        five_latest.pop(0)
